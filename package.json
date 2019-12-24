@@ -24,5 +24,8 @@
   "homepage": "https://github.com/lightxlamp/NodeJS-first-project#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
