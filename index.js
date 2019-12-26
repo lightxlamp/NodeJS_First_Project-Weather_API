@@ -1,21 +1,23 @@
-// FirstProgram from Visual Studio Code
+const express = require('express');
+const bodyParser = require('body-parser')
+const weatherRequest = require('./requests/weather.request')
 
-const now = new Date().toLocaleString()
+const app = express(); 
 
-console.log(now)
-console.log(Math.random())
+app.set('view engine', 'ejs')
+app.use(express.static('public')) 
+app.use(bodyParser.urlencoded({extended: true}))
 
-const fs = require('fs') //file system
+app.get('/', (request, response) => {
+    response.render('index.ejs', {weather: null, error: null})
+})
 
-const data = `
-    Node JS created file
-    ...
-`
+app.post('/', async (request, response) => {
+    const {city} = request.body; 
+    const {weather, error} = await weatherRequest(city)
+    response.render('index.ejs', {weather, error})
+})
 
-const fileName = 'nodejs.txt'
-
-fs.writeFileSync(fileName, data)
-const readingResult = fs.readFileSync(fileName, {encoding: 'utf-8'})
-console.log(readingResult)
-console.log(__dirname)
-console.log(__filename)
+app.listen(1789, () => {
+    console.log('Server running on port 1789')
+});
