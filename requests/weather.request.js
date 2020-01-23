@@ -1,8 +1,10 @@
 // https://gist.github.com/derzorngottes/3b57edc1f996dddcab25 - Hide API Keys on Github
 
-var requestPromise = require("request-promise"); // https://github.com/request/request-promise
+const requestPromise = require("request-promise"); // https://github.com/request/request-promise
+//import API_KEY from './../my_config'
 
 module.exports = async function(city = "") {
+
   if (!city) {
     console.log("City should be filled");
   }
