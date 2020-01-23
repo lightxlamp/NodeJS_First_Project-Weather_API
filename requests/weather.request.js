@@ -1,6 +1,6 @@
 // https://gist.github.com/derzorngottes/3b57edc1f996dddcab25 - Hide API Keys on Github
 
-var requestPromise = require("request-promise");
+var requestPromise = require("request-promise"); // https://github.com/request/request-promise
 
 module.exports = async function(city = "") {
   if (!city) {
@@ -8,32 +8,38 @@ module.exports = async function(city = "") {
   }
   console.log("City: ", city);
 
-  const API_KEY = "5a45af6db4cf594247d3e6a462360b21";
-  //const API_KEY = '8ddb2ae4d480545c1441bb2374c9ff6d'
+  const API_KEY = "6dbb6b54a0a5123ae62a1cca20e4cc09";
   const URI = "http://api.openweathermap.org/data/2.5/weather";
 
   const options = {
     uri: URI,
     querySearch: {
-      appid: API_KEY,
       q: city,
+      appid: API_KEY,
       units: "imperial"
     },
     json: true
   };
 
-  // const resp = await requestPromise(options)
-  // console.log(resp)
+  const my_request_url_with_parameters = URI + "?q=" + city + "&appid=" + API_KEY + "&units=imperial";
+  const options2 = {
+    uri: my_request_url_with_parameters,
+    json: true
+  }
 
   try {
-    const data = await requestPromise(options);
-    const celsius = ((data.main.temp - 32) * 5) / 9;
+    const data = await requestPromise(options2);
+    console.log('DataObj', data);
+    if (data) {
+      const celsius = ((data.main.temp - 32) * 5) / 9;
 
-    return {
-      weather: `${data.name}: ${celsius.toFixed(0)}`,
-      error: null
-    };
+      return {
+        weather: `${data.name}: ${celsius.toFixed(0)}`,
+        error: null
+      };
+    }
   } catch (error) {
+    console.log("errorOBJ", error);
     console.log(error.error.message);
     return {
       weather: null,
