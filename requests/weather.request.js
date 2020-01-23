@@ -9,27 +9,32 @@ module.exports = async function(city = "") {
   console.log("City: ", city);
 
   const API_KEY = "6dbb6b54a0a5123ae62a1cca20e4cc09";
-  const URI = "http://api.openweathermap.org/data/2.5/weather";
+  const URL = "http://api.openweathermap.org/data/2.5/weather";
 
-  const options = {
-    uri: URI,
-    querySearch: {
+  var options = {
+    uri: URL,
+    qs: {
       q: city,
       appid: API_KEY,
       units: "imperial"
     },
+    headers: {
+      "User-Agent": "Request-Promise"
+    },
     json: true
   };
 
-  const my_request_url_with_parameters = URI + "?q=" + city + "&appid=" + API_KEY + "&units=imperial";
-  const options2 = {
-    uri: my_request_url_with_parameters,
-    json: true
-  }
+  // Start. My uneened code anymore 
+  // const my_request_url_with_parameters = URL + "?q=" + city + "&appid=" + API_KEY + "&units=imperial";
+  // const options2 = {
+  //   uri: my_request_url_with_parameters,
+  //   json: true
+  // };
+  // End
 
   try {
-    const data = await requestPromise(options2);
-    console.log('DataObj', data);
+    const data = await requestPromise(options);
+    console.log("DataObj", data);
     if (data) {
       const celsius = ((data.main.temp - 32) * 5) / 9;
 
