@@ -14,9 +14,9 @@
             <% if (weather) { %>
                 <h1><%=weather%></h1>
             <% } else if (error) { %>
-                <p class="error"><%=error%></p>
+                <h2 class="error"><%=error%></h2>
             <% } else { %>
-                <h1>Welcome user</h1>
+                <h2 style="color: black;">Welcome to weather service</h2>
             <% } %>
         </div> 
         <form action="/" method="POST" class="app__content">
