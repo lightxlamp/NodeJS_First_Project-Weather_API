@@ -9,7 +9,12 @@ app.set('view engine', 'ejs')
 app.use(express.static('public')) 
 app.use(bodyParser.urlencoded({extended: true}))
 
+// https://expressjs.com/en/guide/routing.html
+// You define routing using methods of the Express app object that correspond to HTTP methods; for example, app.get() to handle GET requests
 app.get('/', (request, response) => {
+    // http://expressjs.com/en/5x/api.html#res.render
+    // Renders a view and sends the rendered HTML string to the client. Optional parameters:
+    console.log('GET');
     response.render('index.ejs', {weather: null, error: null})
 })
 
