@@ -4,13 +4,13 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    server: "./index.js"
+    index: "./index.js"
   },
   output: {
     path: path.join(__dirname, "dist"),
     publicPath: "/",
     //filename: '[name].js'
-    filename: "server.js"
+    filename: "[name].js"
   },
   target: "node",
   node: {

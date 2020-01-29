@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// https://medium.com/@binyamin/creating-a-node-express-webpack-app-with-dev-and-prod-builds-a4962ce51334\nconst express = __webpack_require__(/*! express */ \"express\");\n\nconst bodyParser = __webpack_require__(/*! body-parser */ \"body-parser\");\n\nconst weatherRequest = __webpack_require__(/*! ./requests/weather.request */ \"./requests/weather.request.js\");\n\nconst app = express();\napp.set('view engine', 'ejs');\napp.use(express.static('public'));\napp.use(bodyParser.urlencoded({\n  extended: true\n})); // https://expressjs.com/en/guide/routing.html\n// You define routing using methods of the Express app object that correspond to HTTP methods; for example, app.get() to handle GET requests\n\napp.get('/', (request, response) => {\n  // http://expressjs.com/en/5x/api.html#res.render\n  // Renders a view and sends the rendered HTML string to the client. Optional parameters:\n  console.log('GET');\n  response.render('index.ejs', {\n    weather: null,\n    error: null\n  });\n});\napp.post('/', async (request, response) => {\n  const {\n    city\n  } = request.body;\n  const {\n    weather,\n    error\n  } = await weatherRequest(city);\n  response.render('index.ejs', {\n    weather,\n    error\n  });\n});\napp.listen(1789, () => {\n  console.log('Server running on port 1789');\n});\n\n//# sourceURL=webpack:///./index.js?");
+eval("// https://medium.com/@binyamin/creating-a-node-express-webpack-app-with-dev-and-prod-builds-a4962ce51334\nconst path = __webpack_require__(/*! path */ \"path\");\n\nconst express = __webpack_require__(/*! express */ \"express\");\n\nconst bodyParser = __webpack_require__(/*! body-parser */ \"body-parser\");\n\nconst weatherRequest = __webpack_require__(/*! ./requests/weather.request */ \"./requests/weather.request.js\");\n\nconst app = express();\napp.set('view engine', 'ejs');\napp.use(express.static('public'));\napp.use(bodyParser.urlencoded({\n  extended: true\n}));\napp.set('views', path.join(__dirname, 'views'));\nconsole.log(path.join(__dirname, 'views')); // https://expressjs.com/en/guide/routing.html\n// You define routing using methods of the Express app object that correspond to HTTP methods; for example, app.get() to handle GET requests\n\napp.get('/', (request, response) => {\n  // http://expressjs.com/en/5x/api.html#res.render\n  // Renders a view and sends the rendered HTML string to the client. Optional parameters:\n  console.log('GET');\n  response.render('index.ejs', {\n    weather: null,\n    error: null\n  });\n});\napp.post('/', async (request, response) => {\n  const {\n    city\n  } = request.body;\n  const {\n    weather,\n    error\n  } = await weatherRequest(city);\n  response.render('index.ejs', {\n    weather,\n    error\n  });\n});\napp.listen(1789, () => {\n  console.log('Server running on port 1789');\n});\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ }),
 
@@ -127,6 +127,17 @@ eval("module.exports = require(\"body-parser\");\n\n//# sourceURL=webpack:///ext
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///external_%22express%22?");
+
+/***/ }),
+
+/***/ "path":
+/*!***********************!*\
+  !*** external "path" ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"path\");\n\n//# sourceURL=webpack:///external_%22path%22?");
 
 /***/ }),
 

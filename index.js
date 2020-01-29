@@ -1,4 +1,5 @@
 // https://medium.com/@binyamin/creating-a-node-express-webpack-app-with-dev-and-prod-builds-a4962ce51334
+const path = require("path");
 const express = require('express');
 const bodyParser = require('body-parser')
 const weatherRequest = require('./requests/weather.request')
@@ -8,6 +9,8 @@ const app = express();
 app.set('view engine', 'ejs')
 app.use(express.static('public')) 
 app.use(bodyParser.urlencoded({extended: true}))
+app.set('views', path.join(__dirname, 'views'));
+console.log(path.join(__dirname, 'views'));
 
 // https://expressjs.com/en/guide/routing.html
 // You define routing using methods of the Express app object that correspond to HTTP methods; for example, app.get() to handle GET requests
