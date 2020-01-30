@@ -1,0 +1,32 @@
+<!-- EJS -- Embedded JavaScript templates -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Node JS Weather APP</title>
+    <!-- <link rel="stylesheet" href="/css/styles.css">  -->
+    <!-- https://stackoverflow.com/questions/24582338/how-can-i-include-css-files-using-node-express-and-ejs -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+</head>
+<body>
+    <div class="app">
+        <div class="app__header">
+            <% if (weather) { %>
+                <h1><%=weather%></h1>
+            <% } else if (error) { %>
+                <h2 class="error"><%=error%></h2>
+            <% } else { %>
+                <h2 style="color: black;">Welcome to weather service</h2>
+            <% } %>
+        </div> 
+        <form action="/" method="POST" class="app__content">
+            <div class="input">
+                <input type="text" id="city" placeholder="Please enter a city name" name="city">
+            </div>
+            <button type="submit" class="btn">Get weather</button>
+        </form>
+    </div>
+</body>
+</html>
